@@ -1,0 +1,120 @@
+# Tutoriales de Taproot Assets 📚
+
+Bienvenido a nuestra guía paso a paso para trabajar con Taproot Assets. Ya seas nuevo en el desarrollo blockchain o un desarrollador experimentado, estos tutoriales te ayudarán a comenzar.
+
+## Primeros Pasos
+
+### Configurando tu Entorno
+
+1. **Instalar Herramientas Requeridas**
+```bash
+# Instalar Lightning Polar para desarrollo
+Descargar desde https://lightningpolar.com
+```
+
+2. **Configurar tu Red de Desarrollo**
+```bash
+# Crear una nueva red en Polar con:
+- 1 nodo Bitcoin
+- 1 nodo LND
+- 1 nodo TAPD
+```
+
+### Creando tu Primer Activo
+
+1. **Mintear un Activo Básico**
+```bash
+# Crear un token simple
+tapcli assets mint --type normal \
+                   --name mitoken \
+                   --supply 1000000 \
+                   --decimal_display 2 \
+                   --meta_bytes '{"descripcion":"Mi primer token"}' \
+                   --meta_type json
+```
+
+2. **Finalizar el Minteo**
+```bash
+tapcli assets mint finalize
+```
+
+### Gestionando Activos
+
+1. **Ver tus Activos**
+```bash
+# Listar todos los activos
+tapcli assets list
+```
+
+2. **Revisar Detalles del Activo**
+```bash
+# Obtener información específica del activo
+tapcli assets list --asset_id <ID_DE_TU_ACTIVO>
+```
+
+## Tutoriales Intermedios
+
+### Trabajando con Grupos de Activos
+
+Crea activos relacionados que comparten propiedades:
+
+```bash
+# Crear activo ancla del grupo
+tapcli assets mint --type normal \
+                   --name tokengrupo \
+                   --supply 1000000 \
+                   --new_grouped_asset
+
+# Agregar al grupo
+tapcli assets mint --type normal \
+                   --name tokengrupo2 \
+                   --supply 500000 \
+                   --grouped_asset \
+                   --group_anchor tokengrupo
+```
+
+### Configurando Transferencias de Activos
+
+Aprende a enviar activos de forma segura:
+
+1. **Generar Dirección de Recepción**
+```bash
+tapcli addrs new --asset_id <ID_ACTIVO> --amt <CANTIDAD>
+```
+
+2. **Enviar Activos**
+```bash
+tapcli assets send --addr <DIRECCION_DESTINATARIO>
+```
+
+## Temas Avanzados
+
+### Integración con Red Lightning
+
+Configura Taproot Assets con canales Lightning:
+
+1. **Configuración de Canales**
+2. **Transferencias Rápidas**
+3. **Gestión de Pagos**
+
+### Configuración de Universo
+
+Aprende sobre sincronización de activos:
+
+1. **Conectar al Universo**
+2. **Sincronizar Datos de Activos**
+3. **Verificar Transferencias**
+
+## Mejores Prácticas
+
+- Siempre respalda tus datos
+- Prueba exhaustivamente en regtest
+- Comienza con cantidades pequeñas
+- Verifica las transacciones
+- Mantén la seguridad en mente
+
+## Recursos Adicionales
+
+- [Documentación Oficial](https://docs.lightning.engineering/the-lightning-network/taproot-assets)
+- [Tutoriales en Video](https://www.youtube.com/playlist?list=PL-3jjRT_28Sh3u_9CPVJkm8BLomh23QGk)
+- [Comunidad de Desarrolladores](https://lightningcommunity.slack.com)
